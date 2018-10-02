@@ -4,9 +4,7 @@ import AuthComponent from './auth.component';
 import {View} from 'react-native';
 
 class Auth extends Component{
-    static propTypes = {
-
-    }
+    static propTypes = {}
 
     render(){
       return(

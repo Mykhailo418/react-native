@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Auth from './src/components/auth/auth';
 import Event from './src/components/events/event';
+import EventsList from './src/components/events/eventsList';
 import data from './fixtures';
 
 // Utils
@@ -9,9 +10,11 @@ const eventList = Object.entries(data.events).map(([ id, event ]) => ({ id, ...e
 
 export default class App extends React.Component {
   render() {
+    // <Auth />
+    // <Event event={eventList[0]} />
     return (
       <View style={styles.container}>
-        <Event event={eventList[0]} />
+        <EventsList events={eventList} />
       </View>
     );
   }
