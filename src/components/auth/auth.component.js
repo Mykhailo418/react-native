@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {View, Text, TextInput, Button, Platform} from 'react-native';
+import {View, Text, TextInput, Button, Platform, StyleSheet} from 'react-native';
 
-const styles = {
+const styles = StyleSheet.create({
   title: {
     fontWeight: 'bold'
   },
@@ -21,7 +21,7 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'space-around'
   }
-}
+});
 
 class AuthComponent extends Component{
     static propTypes = {
