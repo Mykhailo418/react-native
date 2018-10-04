@@ -3,6 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import Auth from './src/components/auth/auth';
 import Event from './src/components/events/event';
 import EventsList from './src/components/events/eventsList';
+import SectionsList from './src/components/events/sectionsList';
+import groupedEvents from './src/components/decorators/GroupedEvents';
 import data from './fixtures';
 
 // Utils
@@ -12,9 +14,10 @@ export default class App extends React.Component {
   render() {
     // <Auth />
     // <Event event={eventList[0]} />
+    const GroupedEvents = groupedEvents(SectionsList, eventList);
     return (
       <View style={styles.container}>
-        <EventsList events={eventList} />
+        <GroupedEvents />
       </View>
     );
   }

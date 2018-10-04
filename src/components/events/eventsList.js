@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet, Text, ScrollView, View} from 'react-native';
+import Event from './event';
 
 const styles = StyleSheet.create({
   event: {
     paddingLeft: 10,
     paddingRight: 10,
     marginBottom: 10
-  },
-  eventTitle: {
-    fontWeight: "700"
   }
 });
 
@@ -20,9 +18,11 @@ class EventsList extends Component{
 
     render(){
       return(
+        <View>
         <ScrollView>
           {this.outputEvents()}
         </ScrollView>
+        </View>
       );
     }
 
@@ -31,9 +31,7 @@ class EventsList extends Component{
       return events.map((event) => {
         return(
             <View key = {event.id} style={styles.event}>
-                <Text style={styles.eventTitle}>{event.title}</Text>
-                <Text>{event.url}</Text>
-                <Text>{event.when}</Text>
+                <Event event={event} />
             </View>
          )
       });
