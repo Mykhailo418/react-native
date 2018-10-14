@@ -25,7 +25,8 @@ const styles = StyleSheet.create({
 
 class AuthComponent extends Component{
     static propTypes = {
-      title: PropTypes.string.isRequired
+      title: PropTypes.string.isRequired,
+      onSignIn: PropTypes.func.isRequired
     }
 
     state = {
@@ -34,30 +35,32 @@ class AuthComponent extends Component{
     }
 
     render(){
-      const {title} = this.props;
+      const {title, onSignIn} = this.props;
       return(
-        <View style={styles.container}>
-            <Text style={styles.title}>{title.toUpperCase()}</Text>
-            <View>
-              <Text>Email:</Text>
-              <TextInput
-                  value={this.state.email}
-                  onChangeText={this.handleFieldChange('email')}
-                  keyboardType="email-address"
-                  style={styles.input}
-              />
-            </View>
-            <View>
-              <Text>Password:</Text>
-              <TextInput
-                  value={this.state.password}
-                  onChangeText={this.handleFieldChange('password')}
-                  secureTextEntry
-                  style={styles.input}
-              />
-            </View>
-            <Button title = "Sign In" onPress = {this.handleSubmit}/>
-        </View>
+        <View>
+          <View style={styles.container}>
+              <Text style={styles.title}>{title.toUpperCase()}</Text>
+              <View>
+                <Text>Email:</Text>
+                <TextInput
+                    value={this.state.email}
+                    onChangeText={this.handleFieldChange('email')}
+                    keyboardType="email-address"
+                    style={styles.input}
+                />
+              </View>
+              <View>
+                <Text>Password:</Text>
+                <TextInput
+                    value={this.state.password}
+                    onChangeText={this.handleFieldChange('password')}
+                    secureTextEntry
+                    style={styles.input}
+                />
+              </View>
+              <Button title = "Sign In" onPress = {this.handleSubmit}/>
+          </View>
+          </View>
       );
     }
 
@@ -68,7 +71,7 @@ class AuthComponent extends Component{
     }
 
     handleSubmit = () => {
-        console.log('---', this.state);
+      this.props.onSignIn();
     }
 }
 

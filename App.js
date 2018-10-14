@@ -2,9 +2,11 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Auth from './src/components/auth/auth';
 import Event from './src/components/events/event';
+import EventCard from './src/components/events/eventCard';
 import EventsList from './src/components/events/eventsList';
 import SectionsList from './src/components/events/sectionsList';
 import groupedEvents from './src/components/decorators/GroupedEvents';
+import AppNavigator from './src/components/screens/app-navigation'
 import data from './fixtures';
 
 // Utils
@@ -16,9 +18,7 @@ export default class App extends React.Component {
     // <Event event={eventList[0]} />
     const GroupedEvents = groupedEvents(SectionsList, eventList);
     return (
-      <View style={styles.container}>
-        <GroupedEvents />
-      </View>
+        <AppNavigator />
     );
   }
 }
