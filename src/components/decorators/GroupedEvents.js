@@ -8,7 +8,6 @@ const groupedEvents = (OriginalComponent, events) =>{
         render(){
           const sortedEvents = this.sortEvents(events);
           const groupedEvents = this.groupEvents(sortedEvents);
-
           return(
             <View>
                 <OriginalComponent groupedEvents={groupedEvents} {...this.props} />

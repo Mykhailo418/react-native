@@ -2,17 +2,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import EventCard from '../events/eventCard';
 import {View, StyleSheet} from 'react-native';
+import data from '../../../fixtures'
 
 class EventScreen extends Component {
     static propTypes = {
-      event: PropTypes.object.isRequired
+
      }
 
-     static navigationOptions = {
-        title: 'Event'
-     }
+     static navigationOptions = ({ navigation }) => ({
+        title: 'Event ' + navigation.state.params.title
+     })
 
      render() {
+       console.log('-- Event Screen');
+       const event = data.events[this.props.navigation.state.params.id];
         return (
           <View style={styles.container}>
             <EventCard event={event} />

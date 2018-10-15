@@ -4,9 +4,12 @@ import {View, StyleSheet, Text, Image, Button } from 'react-native';
 import ConfirmModal from '../common/confirmModal';
 
 const styles = StyleSheet.create({
+  container: {
+    width: 300
+  },
     image: {
-       width: 200,
-       height: 100
+       width: '100%',
+       height: 200
     },
     eventTitle: {
         fontWeight: "700",
@@ -29,10 +32,11 @@ class EventCard extends Component{
 
     render(){
       const {title, when, url} = this.props.event;
+      const randomNumber = Math.floor(Math.random()*1000);
       return(
         <View>
-          <View>
-            <Image source={{ uri: 'https://picsum.photos/400/200/?random'}}
+          <View style={styles.container}>
+            <Image source={{ uri: `https://picsum.photos/400/200/?image=${randomNumber}`}}
                 style = {styles.image}
             />
             <Text style = {styles.eventTitle}>{title}</Text>

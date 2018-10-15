@@ -13,8 +13,7 @@ const styles = StyleSheet.create({
     containerTitle: {
       display: 'flex',
       justifyContent: 'space-between',
-      flexDirection: "row",
-      maxWidth: 300
+      flexDirection: "row"
     },
     deleteBtnText: {
       color: 'red'
@@ -32,9 +31,6 @@ class Event extends Component{
         <View>
             <View style={styles.containerTitle}>
                 <Text style={styles.eventTitle}>{title}</Text>
-                <TouchableOpacity onPress={this.deleteEvent}>
-                  <Text style={styles.deleteBtnText}>Delete</Text>
-                </TouchableOpacity>
             </View>
             <Text>{url}</Text>
             <Text>{when}</Text>

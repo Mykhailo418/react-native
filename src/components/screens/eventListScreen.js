@@ -19,9 +19,14 @@ class EventListScreen extends Component {
         const GroupedEvents = groupedEvents(SectionsList, eventList);
         return (
           <View style={styles.container}>
-            <GroupedEvents />
+            <GroupedEvents onEventPress={this.handleEventPress} />
           </View>
         );
+    }
+
+    handleEventPress = ({ id, title }) => {
+      console.log('-- NAvigate to event screen');
+      return this.props.navigation.navigate('event', { id, title })
     }
 }
 

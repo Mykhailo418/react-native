@@ -53,14 +53,14 @@ class SectionsList extends Component{
     }
 
     outputEvents = () => {
-      const {groupedEvents} = this.props;
+      const {groupedEvents, onEventPress} = this.props;
       const keysEvents = Object.keys(groupedEvents);
 
       return keysEvents.map((key) => {
         return (
           <View key = {key.charCodeAt()} >
               <Text style={styles.groupedTitle}>{`${key.toUpperCase()}(${groupedEvents[key].length})`}</Text>
-              <EventsList events={groupedEvents[key]}></EventsList>
+              <EventsList events={groupedEvents[key]} onEventPress={onEventPress}></EventsList>
           </View>
         );
       })
