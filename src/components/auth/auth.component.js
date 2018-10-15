@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {View, Text, TextInput, Button, Platform, StyleSheet} from 'react-native';
-import {observer, inject} from 'mobx-react'
+import {observer, inject} from 'mobx-react';
+import firebase from 'firebase';
 
 const styles = StyleSheet.create({
   title: {
@@ -76,8 +77,12 @@ class AuthComponent extends Component{
 
     handleSubmit = () => {
       const {auth} = this.props;
-      if(this.props.auth.isValidEmail){
-        this.props.onSignIn();
+      if(auth.isValidEmail){
+        firebase.auth().signInWithEmailAndPassword(auth.email, auth.password)
+            .then((user) => {
+                auth.user = user;
+                this.props.onSignIn();
+        });
       }
     }
 }

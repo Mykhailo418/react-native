@@ -3,6 +3,7 @@ import {observable, action, computed} from 'mobx';
 import {validate} from 'email-validator'
 
 class AuthStore {
+    user = null;
     // Observables
     @observable email = '';
     @observable password = '';
