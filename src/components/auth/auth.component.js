@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {View, Text, TextInput, Button, Platform, StyleSheet} from 'react-native';
+import {observer, inject} from 'mobx-react'
 
 const styles = StyleSheet.create({
   title: {
@@ -20,22 +21,22 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-around'
+  },
+  errorText: {
+    color: 'red'
   }
 });
 
+@inject('auth')
+@observer
 class AuthComponent extends Component{
     static propTypes = {
       title: PropTypes.string.isRequired,
       onSignIn: PropTypes.func.isRequired
     }
 
-    state = {
-      email: '',
-      password: ''
-    }
-
     render(){
-      const {title, onSignIn} = this.props;
+      const {title, onSignIn, auth} = this.props;
       return(
         <View>
           <View style={styles.container}>
@@ -43,17 +44,20 @@ class AuthComponent extends Component{
               <View>
                 <Text>Email:</Text>
                 <TextInput
-                    value={this.state.email}
-                    onChangeText={this.handleFieldChange('email')}
+                    value={auth.email}
+                    onChangeText={auth.changeEmail}
                     keyboardType="email-address"
                     style={styles.input}
                 />
+                <Text style={styles.errorText}>
+                  {auth.isValidEmail || auth.email.length < 1 ? '' : 'email is invalid'}
+                </Text>
               </View>
               <View>
                 <Text>Password:</Text>
                 <TextInput
-                    value={this.state.password}
-                    onChangeText={this.handleFieldChange('password')}
+                    value={auth.password}
+                    onChangeText={auth.changePassword}
                     secureTextEntry
                     style={styles.input}
                 />
@@ -71,7 +75,10 @@ class AuthComponent extends Component{
     }
 
     handleSubmit = () => {
-      this.props.onSignIn();
+      const {auth} = this.props;
+      if(this.props.auth.isValidEmail){
+        this.props.onSignIn();
+      }
     }
 }
 

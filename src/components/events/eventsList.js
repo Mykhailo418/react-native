@@ -32,7 +32,7 @@ class EventsList extends Component{
       return events.map((event) => {
         return(
             <View key = {event.id} style={styles.event}>
-              <TouchableOpacity onPress={this.navigateToEvent(event)}>
+              <TouchableOpacity onPress={this.navigateToEvent(event)} >
                 <Event event={event} />
               </TouchableOpacity>
             </View>

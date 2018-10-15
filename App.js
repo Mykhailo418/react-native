@@ -1,10 +1,15 @@
 import React from 'react';
-import AppNavigator from './src/components/screens/app-navigation'
+import 'es6-symbol/implement';
+import AppNavigator from './src/components/screens/app-navigation';
+import {Provider} from 'mobx-react';
+import stores from './src/stores';
 
 export default class App extends React.Component {
   render() {
     return (
-        <AppNavigator />
+       <Provider {...stores}>
+          <AppNavigator />
+       </Provider>
     );
   }
 }
