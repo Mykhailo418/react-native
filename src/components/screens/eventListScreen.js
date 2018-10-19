@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import groupedEvents from '../decorators/GroupedEvents';
 import SectionsList from '../events/sectionsList';
-import data from '../../../fixtures';
-import {View, StyleSheet} from 'react-native';
+//import data from '../../../fixtures';
+import {View, StyleSheet, ActivityIndicator} from 'react-native';
+import {observer, inject} from 'mobx-react';
 
-const eventList = Object.entries(data.events).map(([ id, event ]) => ({ id, ...event }));
+//const eventList = Object.entries(data.events).map(([ id, event ]) => ({ id, ...event }));
 
+@inject('events')
+@inject('navigation')
+@observer
 class EventListScreen extends Component {
     static propTypes = {
      }
@@ -15,19 +19,24 @@ class EventListScreen extends Component {
         title: 'Event list'
     }
 
+    componentDidMount() {
+        this.props.events.loadAll();
+    }
+
      render() {
-        const GroupedEvents = groupedEvents(SectionsList, eventList);
+        const {events} = this.props;
+        if (events.loading) return this.getLoader();
+        const GroupedEvents = groupedEvents(SectionsList, events.list);
         return (
           <View style={styles.container}>
-            <GroupedEvents onEventPress={this.handleEventPress} />
+            <GroupedEvents />
           </View>
         );
     }
 
-    handleEventPress = ({ id, title }) => {
-      console.log('-- NAvigate to event screen');
-      return this.props.navigation.navigate('event', { id, title })
-    }
+    getLoader() {
+       return <View><ActivityIndicator size='large'/></View>;
+   }
 }
 
 const styles = StyleSheet.create({

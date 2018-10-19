@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet, Text, ScrollView, View, TouchableOpacity} from 'react-native';
 import Event from './event';
+import {observer, inject} from 'mobx-react';
 
 const styles = StyleSheet.create({
   event: {
@@ -11,13 +12,15 @@ const styles = StyleSheet.create({
   }
 });
 
+@inject('navigation')
+@observer
 class EventsList extends Component{
     static propTypes = {
-      events: PropTypes.array.isRequired,
-      onEventPress: PropTypes.func.isRequired,
+      events: PropTypes.array.isRequired
     }
 
     render(){
+      console.log('EventsList render');
       return(
         <View>
         <ScrollView>
@@ -28,10 +31,10 @@ class EventsList extends Component{
     }
 
     outputEvents = () => {
-      const {events} = this.props;
+      const {events, navigation} = this.props;
       return events.map((event) => {
         return(
-            <View key = {event.id} style={styles.event}>
+            <View key = {event.uid} style={styles.event}>
               <TouchableOpacity onPress={this.navigateToEvent(event)} >
                 <Event event={event} />
               </TouchableOpacity>
@@ -41,8 +44,8 @@ class EventsList extends Component{
     }
 
     navigateToEvent = (event) => {
-        const {onEventPress} = this.props;
-        return () => onEventPress(event);
+        const {navigation} = this.props;
+        return () => navigation.goTo('event', {event});
     }
 }
 

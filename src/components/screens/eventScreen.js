@@ -10,12 +10,12 @@ class EventScreen extends Component {
      }
 
      static navigationOptions = ({ navigation }) => ({
-        title: 'Event ' + navigation.state.params.title
+        title: 'Event ' + navigation.state.params.event.title
      })
 
      render() {
        console.log('-- Event Screen');
-       const event = data.events[this.props.navigation.state.params.id];
+       const {event} = this.props.navigation.state.params;
         return (
           <View style={styles.container}>
             <EventCard event={event} />
