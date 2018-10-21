@@ -1,10 +1,10 @@
 import firebase from 'firebase'
 const config = {
-   apiKey: "AIzaSyBD68Bnic_VAcoF42x3ajYXnjaF53cUNLw",
-   authDomain: "react-native-f2e3b.firebaseapp.com",
-   databaseURL: "https://react-native-f2e3b.firebaseio.com",
-   projectId: "react-native-f2e3b",
-   storageBucket: "",
-   messagingSenderId: "610837593831"
+   apiKey: "AIzaSyBa2tLDBA04CbecLig0bgJAS1w1MY8QVqo",
+   authDomain: "react-advanced-fb021.firebaseapp.com",
+   databaseURL: "https://react-advanced-fb021.firebaseio.com",
+   projectId: "react-advanced-fb021",
+   storageBucket: "react-advanced-fb021.appspot.com",
+   messagingSenderId: "268012363840"
  };
 firebase.initializeApp(config)

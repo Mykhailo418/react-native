@@ -1,6 +1,7 @@
-import {NavigationActions} from 'react-navigation'
+import {NavigationActions, StackActions} from 'react-navigation';
+import BasicStore from './BasicStore';
 
-class Navigation{
+class Navigation extends BasicStore{
   navRef = null
 
   setNavRef = ref => this.navRef = ref;
@@ -9,6 +10,14 @@ class Navigation{
       routeName,
       params
   }))
+
+  reset = (routeName) => {
+      const action = StackActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName })]
+      });
+      this.navRef.dispatch(action);
+  }
 }
 
 export default Navigation;

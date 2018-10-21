@@ -1,9 +1,19 @@
 import 'es6-symbol/implement';
 import {observable, action, computed} from 'mobx';
-import {validate} from 'email-validator'
+import {validate} from 'email-validator';
+import BasicStore from './BasicStore';
+import firebase from 'firebase';
 
-class AuthStore {
+class AuthStore extends BasicStore {
     user = null;
+
+    constructor(...args){
+      super(...args);
+      firebase.auth().onAuthStateChanged(user => {
+          this.getStore('navigation').reset('eventList');
+      });
+    }
+
     // Observables
     @observable email = '';
     @observable password = '';
