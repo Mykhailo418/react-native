@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Auth from '../auth/auth';
 import {View, StyleSheet} from 'react-native';
+import {StackActions, NavigationActions} from 'react-navigation';
 
 class AuthScreen extends Component {
     static propTypes = {
@@ -18,7 +19,14 @@ class AuthScreen extends Component {
           </View>
         );
     }
-     handleSignIn = () => this.props.navigation.navigate('eventList');
+     handleSignIn = () => {
+      const action = StackActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({routeName: 'eventList'})]
+      });
+       this.props.navigation.dispatch(action);
+       //this.props.navigation.navigate('eventList');
+     }
 }
 
 const styles = StyleSheet.create({
