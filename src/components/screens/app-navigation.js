@@ -2,6 +2,7 @@ import {createStackNavigator} from 'react-navigation';
 import AuthScreen from './authScreen'
 import EventScreen from './eventScreen'
 import EventListScreen from './eventListScreen'
+import PeopleListScreen from './peopleListScreen'
 
 export default createStackNavigator({
     auth: {
@@ -15,5 +16,8 @@ export default createStackNavigator({
     },
     eventList: {
         screen: EventListScreen
+    },
+    peopleList: {
+      screen: PeopleListScreen
     }
 })

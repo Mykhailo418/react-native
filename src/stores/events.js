@@ -1,7 +1,6 @@
 import {observable, computed, action} from 'mobx';
 import firebase from 'firebase';
 import {entitiesFromFB} from './utils';
-import data from '../../fixtures';
 import BasicStore from './BasicStore';
 
 class Events extends BasicStore {

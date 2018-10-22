@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {StyleSheet, Text, ScrollView, View} from 'react-native';
+import {StyleSheet, Text, ScrollView, View, Button} from 'react-native';
 import EventsList from './eventsList';
+import {observer, inject} from 'mobx-react';
 
 const styles = StyleSheet.create({
   header: {
@@ -36,6 +37,8 @@ const styles = StyleSheet.create({
   }
 });
 
+@inject('navigation')
+@observer
 class SectionsList extends Component{
     static propTypes = {
       groupedEvents: PropTypes.object.isRequired
@@ -45,6 +48,7 @@ class SectionsList extends Component{
       return(
         <View>
         <Text style={styles.header}>Events</Text>
+        <Button title="People List" onPress={this.goToPeopleScreen} />
         <ScrollView>
           {this.outputEvents()}
         </ScrollView>
@@ -66,6 +70,9 @@ class SectionsList extends Component{
       })
     }
 
+    goToPeopleScreen = () =>{
+      return this.props.navigation.goTo('peopleList', {});
+    }
 }
 
 export default SectionsList;
