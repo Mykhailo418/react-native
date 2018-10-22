@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {StyleSheet, Text, ScrollView, View, Button} from 'react-native';
+import {StyleSheet, Text, ScrollView, View} from 'react-native';
 import EventsList from './eventsList';
 import {observer, inject} from 'mobx-react';
 
@@ -48,7 +48,6 @@ class SectionsList extends Component{
       return(
         <View>
         <Text style={styles.header}>Events</Text>
-        <Button title="People List" onPress={this.goToPeopleScreen} />
         <ScrollView>
           {this.outputEvents()}
         </ScrollView>
@@ -68,10 +67,6 @@ class SectionsList extends Component{
           </View>
         );
       })
-    }
-
-    goToPeopleScreen = () =>{
-      return this.props.navigation.goTo('peopleList', {});
     }
 }
 

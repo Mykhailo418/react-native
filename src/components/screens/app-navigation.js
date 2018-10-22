@@ -1,8 +1,23 @@
-import {createStackNavigator} from 'react-navigation';
+import {createStackNavigator, TabNavigator } from 'react-navigation';
 import AuthScreen from './authScreen'
 import EventScreen from './eventScreen'
 import EventListScreen from './eventListScreen'
 import PeopleListScreen from './peopleListScreen'
+
+const customTabNavigator = TabNavigator({
+  eventList: {
+    screen: EventListScreen,
+    navigationOptions: ({ navigation }) => ({
+         title: 'Event List',
+    }),
+  },
+  peopleList: {
+    screen: PeopleListScreen,
+    navigationOptions: ({ navigation }) => ({
+         title: 'People List'
+    }),
+  },
+});
 
 export default createStackNavigator({
     auth: {
@@ -14,10 +29,13 @@ export default createStackNavigator({
     event: {
         screen: EventScreen
     },
-    eventList: {
-        screen: EventListScreen
+    listing: {
+        screen: customTabNavigator,
+        navigationOptions: ({ navigation }) => ({
+             title: 'Listing',
+        }),
     },
     peopleList: {
       screen: PeopleListScreen
     }
-})
+});

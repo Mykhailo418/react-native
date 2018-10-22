@@ -22,7 +22,7 @@ class AuthScreen extends Component {
      handleSignIn = () => {
       const action = StackActions.reset({
         index: 0,
-        actions: [NavigationActions.navigate({routeName: 'eventList'})]
+        actions: [NavigationActions.navigate({routeName: 'listing'})]
       });
        this.props.navigation.dispatch(action);
        //this.props.navigation.navigate('eventList');

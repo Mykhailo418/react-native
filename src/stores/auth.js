@@ -10,7 +10,7 @@ class AuthStore extends BasicStore {
     constructor(...args){
       super(...args);
       firebase.auth().onAuthStateChanged(user => {
-          this.getStore('navigation').reset('eventList');
+          this.getStore('navigation').reset('listing');
       });
     }
 
