@@ -5,19 +5,16 @@ import BasicStore from './BasicStore';
 import firebase from 'firebase';
 
 class AuthStore extends BasicStore {
-    user = null;
 
     constructor(...args){
       super(...args);
-      firebase.auth().onAuthStateChanged(user => {
-          const routeName = user ? 'listing' : 'auth';
-          this.getStore('navigation').reset(routeName);
-      });
+      firebase.auth().onAuthStateChanged(user => this.user = user);
     }
 
     // Observables
     @observable email = '';
     @observable password = '';
+    @observable user = null;
 
     // Actions
     @action changeEmail = (email) => this.email = email;

@@ -6,12 +6,9 @@ import People from './people';
 
 // stores
 const stores = {};
-
-Object.assign(stores, {
-  auth: new AuthStore(stores),
-  events: new EventsStore(stores),
-  navigation: new Navigation(stores),
-  people: new People(stores)
-})
+stores.auth = new AuthStore(stores);
+stores.events = new EventsStore(stores);
+stores.navigation = new Navigation(stores);
+stores.people = new People(stores);
 
 export default stores;
