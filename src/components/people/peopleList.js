@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {StyleSheet, Text, ScrollView, View, SectionList} from 'react-native';
+import {StyleSheet, Text, ScrollView, View, SectionList, TouchableOpacity} from 'react-native';
+import {observer, inject} from 'mobx-react';
 
-
+@inject('navigation')
+@observer
 class PeopleList extends Component{
     static propTypes = {
       people: PropTypes.array.isRequired
@@ -34,13 +36,20 @@ class PeopleList extends Component{
       const {uid, email, fname, lname} = item;
       return (
         <View key={uid} style={{marginBottom: 10}}>
-          <Text style={{fontWeight: 'bold'}}>{`${fname} ${lname}`}</Text>
+          <TouchableOpacity onPress={this.navigateToPerson(item)} >
+            <Text style={{fontWeight: 'bold', textDecorationLine: 'underline'}}>{`${fname} ${lname}`}</Text>
+          </TouchableOpacity>
           <Text>Email: {email}</Text>
         </View>
       );
     }
 
     renderPersonHeader = ({section: {title}}) => <Text style={{fontWeight: 'bold'}}>{title}</Text>;
+
+    navigateToPerson = (person) => {
+      const {navigation} = this.props;
+      return () => navigation.goTo('person', {person});
+    }
 }
 
 export default PeopleList;

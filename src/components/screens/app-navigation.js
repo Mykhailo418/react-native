@@ -1,8 +1,10 @@
 import {createStackNavigator, TabNavigator } from 'react-navigation';
-import AuthScreen from './authScreen'
-import EventScreen from './eventScreen'
-import EventListScreen from './eventListScreen'
-import PeopleListScreen from './peopleListScreen'
+import AuthScreen from './authScreen';
+import EventScreen from './eventScreen';
+import EventMapScreen from './eventMapScreen';
+import PersonScreen from './personScreen';
+import EventListScreen from './eventListScreen';
+import PeopleListScreen from './peopleListScreen';
 
 const customTabNavigator = TabNavigator({
   eventList: {
@@ -28,6 +30,12 @@ export default createStackNavigator({
     },
     event: {
         screen: EventScreen
+    },
+    map: {
+        screen: EventMapScreen
+    },
+    person: {
+        screen: PersonScreen
     },
     listing: {
         screen: customTabNavigator,
