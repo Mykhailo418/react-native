@@ -5,6 +5,7 @@ import EventMapScreen from './eventMapScreen';
 import PersonScreen from './personScreen';
 import EventListScreen from './eventListScreen';
 import PeopleListScreen from './peopleListScreen';
+import CameraScreen from './cameraScreen';
 
 const customTabNavigator = TabNavigator({
   eventList: {
@@ -33,6 +34,9 @@ export default createStackNavigator({
     },
     map: {
         screen: EventMapScreen
+    },
+    camera: {
+        screen: CameraScreen
     },
     person: {
         screen: PersonScreen

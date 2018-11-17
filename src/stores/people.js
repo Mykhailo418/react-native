@@ -24,6 +24,13 @@ class People extends BasicStore {
                this.loading = false;
            });
    }
+
+   @action setPhoto(index, uri){
+     const person = this.entities[index];
+     person['photo'] = uri;
+     const navigation = this.getStore('navigation');
+     navigation.goTo('person', {person: Object.assign({}, person)});
+   }
 }
 
 export default People;

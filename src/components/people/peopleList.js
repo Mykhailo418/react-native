@@ -34,6 +34,7 @@ class PeopleList extends Component{
 
     renderPerson = ({item, index, section}) => {
       const {uid, email, fname, lname} = item;
+      console.log('--person index', index);
       return (
         <View key={uid} style={{marginBottom: 10}}>
           <TouchableOpacity onPress={this.navigateToPerson(item)} >
